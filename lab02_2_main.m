@@ -22,14 +22,31 @@ n = 512;    % кількість точок, що розраховуються
 mag = abs(h); 
 phase = angle(h)*180/pi;
 figure()
-subplot(211); plot(w/(2*pi)*fs,mag), grid on, xlabel('АЧХ')
-subplot(212), plot(w/(2*pi) *fs,unwrap(phase)), grid on, xlabel('ФЧХ')
+subplot(211); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
+xlabel('Frequency'), ylabel('Magnitude'),
+subplot(212), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ'),
+xlabel('Frequency'), ylabel('Phase'),
 
 %=== Завдання #1.2 ===
 % Обчислення нулів фільтру
 disp('Нулі фільтра Хеннінга') 
 x = roots(b);
 disp(x);
+
+%=== Завдання #1.3 ===
+% Фільтрація ЕКГ, файл ecg117.dat
+ecg117 = load('ecg117.dat');
+fs = 1000;
+ecg = ecg117(:, 1);		% сигнал ЕКГ
+ecg = detrend(ecg);
+ecgf = filter(b, a, ecg);
+t = (0:length(ecg) - 1)/fs;
+figure()
+subplot(2, 1, 1), plot(t, ecg), title('Сигнал ЕКГ'), xlim([1 1.5]),ylabel('A, мкВ')
+subplot(2, 1, 2), plot(t, ecgf), title('Фільтрований сигнал ЕКГ'), xlim([1 1.5])
+xlabel('t, мс')
+ylabel('A, мкВ')
+
 
 
 

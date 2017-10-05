@@ -1,4 +1,4 @@
-function lab02_main
+function lab02_2_main
 %=== Дисципліна: Основи обробки біомедичної інформації ===
 %--- Лабораторна робота #2 ФІЛЬТРАЦІЯ БІОСИГНАЛІВ ФІЛЬТРАМИ З СІХ
 %
@@ -14,20 +14,40 @@ disp('Виконав: Лимар Віталій, група БМ-462 ІІДС')
 
 %=== Завдання #1.1 ===
 % Реалізація фільтру Хеннінга, обчислення АЧХ та ФЧХ
-fs = 
-b = [1 2 1]/4;% коефіцієнти різницевого рівняння 
+fs = 100;
+b = [1 2 1]/4;  % коефіцієнти різницевого рівняння 
 a = 1;
 n = 512;    % кількість точок, що розраховуються
 [h,w] = freqz(b,a,n);
-mag = abs(h); phase = angle(h)*180/pi;
-subplot(211); plot(w/(2*pi)*fs,mag), grid on
-subplot(212), plot(w/(2*pi) *fs,unwrap(phase)), grid on
-b =		
-a = 
-n = 	
+mag = abs(h); 
+phase = angle(h)*180/pi;
 figure()
-[] = freqz();
-...
-... введіть позначення осей графіків
+subplot(211); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
+xlable('F'), ylabel('Magnitude')
+subplot(212), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ')
+
+%=== Завдання #1.2 ===
+% Обчислення нулів фільтру
+disp('Нулі фільтра Хеннінга') 
+x = roots(b);
+disp(x);
+
+%=== Завдання #1.3 ===
+% Фільтрація ЕКГ, файл ecg117.dat
+ecg117 = load('ecg117.dat');
+fs = 1000;
+ecg = ecg117(:, 1);		% сигнал ЕКГ
+ecg = detrend(ecg);
+ecgf = filter(b, a, ecg);
+t = (0:length(ecg) - 1)/fs;
+figure()
+subplot(2, 1, 1), plot(t, ecg), title('Сигнал ЕКГ'), xlim([1 1.5]),ylabel('A, мкВ')
+subplot(2, 1, 2), plot(t, ecgf), title('Фільтрований сигнал ЕКГ'), xlim([1 1.5])
+xlabel('t, мс')
+ylabel('A, мкВ')
+
+
+
+
 
 
