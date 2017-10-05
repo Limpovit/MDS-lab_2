@@ -22,9 +22,9 @@ n = 512;    % кількість точок, що розраховуються
 mag = abs(h); 
 phase = angle(h)*180/pi;
 figure()
-subplot(211); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
+subplot(2, 1, 1); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
 xlabel('Frequency'), ylabel('Magnitude'),
-subplot(212), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ'),
+subplot(2, 1, 2), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ'),
 xlabel('Frequency'), ylabel('Phase'),
 
 %=== Завдання #1.2 ===
@@ -46,6 +46,25 @@ subplot(2, 1, 1), plot(t, ecg), title('Сигнал ЕКГ'), xlim([1 1.5]),ylabel('A, мк
 subplot(2, 1, 2), plot(t, ecgf), title('Фільтрований сигнал ЕКГ'), xlim([1 1.5])
 xlabel('t, мс')
 ylabel('A, мкВ')
+
+%=== Завдання #2.1 ===
+%Реалізація фільтру поліноміального згладжування
+fs = 100;
+bp = [-3 12 17 12 -3]/35;		% коефіцієнти різницевого рівняння
+ap = 1;
+n = 512; % кількість точок, що розраховуються
+figure()
+[h,w] = freqz(bp,ap,n);
+mag = abs(h); 
+phase = angle(h)*180/pi;
+subplot(3, 1, 1); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
+xlabel('Frequency'), ylabel('Magnitude'),
+subplot(3, 1, 2), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ'),
+xlabel('Frequency'), ylabel('Phase'),
+% Обчислення нулів фільтру
+x = roots(bp);
+% Карта нулів та полюсів фільтру
+subplot(3, 1, 3), zplane(x)
 
 
 
