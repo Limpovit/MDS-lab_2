@@ -1,4 +1,4 @@
-function lab02_main
+function lab02_2_main
 %=== Дисципліна: Основи обробки біомедичної інформації ===
 %--- Лабораторна робота #2 ФІЛЬТРАЦІЯ БІОСИГНАЛІВ ФІЛЬТРАМИ З СІХ
 %
@@ -24,6 +24,12 @@ phase = angle(h)*180/pi;
 figure()
 subplot(211); plot(w/(2*pi)*fs,mag), grid on, xlabel('АЧХ')
 subplot(212), plot(w/(2*pi) *fs,unwrap(phase)), grid on, xlabel('ФЧХ')
+
+%=== Завдання #1.2 ===
+% Обчислення нулів фільтру
+disp('Нулі фільтра Хеннінга') 
+x = roots(b);
+disp(x);
 
 
 
