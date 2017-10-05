@@ -123,16 +123,16 @@ ylabel('A, мкВ')
 % Дослідження властивостей диференціаторів
 % N = 1
 fs = 1000;
-bd1 = [1 -1]		% коефіцієнти різницевого рівняння 
+bd1 = [1 -1];		% коефіцієнти різницевого рівняння 
 ad1 = 1;
 n = 512	;	 % кількість точок, що розраховуються
 figure()
 [h,w] = freqz(bd1,ad1,n);
 mag = abs(h); 
 phase = angle(h)*180/pi;
-subplot(3, 1, 1); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
+subplot(2, 1, 1); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
 xlabel('Frequency'), ylabel('Magnitude'),
-subplot(3, 1, 2), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ'),
+subplot(2, 1, 2), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ'),
 xlabel('Frequency'), ylabel('Phase'),
 
 % N = 2
@@ -143,15 +143,16 @@ figure()
 [h,w] = freqz(bd2,ad2,n);
 mag = abs(h); 
 phase = angle(h)*180/pi;
-subplot(3, 1, 1); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
+subplot(2, 1, 1); plot(w/(2*pi)*fs,mag), grid on, title('АЧХ'),
 xlabel('Frequency'), ylabel('Magnitude'),
-subplot(3, 1, 2), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ'),
+subplot(2, 1, 2), plot(w/(2*pi) *fs,unwrap(phase)), grid on, title('ФЧХ'),
 xlabel('Frequency'), ylabel('Phase'),
 
 
 % Побудова передавальних функцій
-H1 = filt ()
-H2 = filt ()
+H1 = filt(bd1, ad1)
+H2 = filt(bd2, ad2)
+
 
 
 
