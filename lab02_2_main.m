@@ -42,8 +42,8 @@ ecg = detrend(ecg);
 ecgf = filter(b, a, ecg);
 t = (0:length(ecg) - 1)/fs;
 figure()
-subplot(2, 1, 1), plot(t, ecg), title('Сигнал ЕКГ'), xlim([1 1.5]),ylabel('A, мкВ')
-subplot(2, 1, 2), plot(t, ecgf), title('Фільтрований сигнал ЕКГ'), xlim([1 1.5])
+subplot(2, 1, 1), plot(t, ecg), title('Сигнал ЕКГ'), grid on, xlim([1 1.5]),ylabel('A, мкВ')
+subplot(2, 1, 2), plot(t, ecgf), title('Фільтрований сигнал ЕКГ'), grid on, xlim([1 1.5])
 xlabel('t, мс')
 ylabel('A, мкВ')
 
@@ -71,8 +71,8 @@ subplot(3, 1, 3), zplane(x)
 %поліноміального згладжування
 ecgf5 = filter(bp, ap, ecg);
 figure()
-subplot(2, 1, 1), plot(t, ecg), title('Сигнал ЕКГ'), xlim([1 1.5]),ylabel('A, мкВ')
-subplot(2, 1, 2), plot(t, ecgf5), title('Фільтрований сигнал ЕКГ'), xlim([1 1.5])
+subplot(2, 1, 1), plot(t, ecg), title('Сигнал ЕКГ'), grid on, xlim([1 1.5]),ylabel('A, мкВ')
+subplot(2, 1, 2), plot(t, ecgf5), title('Фільтрований сигнал ЕКГ'), grid on, xlim([1 1.5])
 xlabel('t, мс')
 ylabel('A, мкВ')
 
@@ -82,7 +82,7 @@ ylabel('A, мкВ')
 %і поліноміальним фільтром
 figure()
 plot(t, ecgf), title('Фільтр Хенінга та поліномінальний фільтр'), hold on
-plot(t, ecgf5, 'k-'), title(''), xlim([1 1.25]), hold off,
+plot(t, ecgf5, 'k-'), title(''), grid on, xlim([1 1.25]), hold off,
 xlabel('t, мс')
 ylabel('A, мкВ')
 
@@ -115,7 +115,7 @@ ecgf = filter(br, ar, ecg);
 t = (0:length(ecg) - 1)/fs;	
 figure()
 plot(t, ecg), title('Початковий та відфільтрований сигнали'), hold on
-plot(t, ecgf, 'k-'), xlim([0 1]),  hold off,
+plot(t, ecgf, 'k-'), grid on, xlim([0 1]),  hold off,
 xlabel('t, мс')
 ylabel('A, мкВ')
 
@@ -164,7 +164,7 @@ ecgd1 = filter(bd1, ad1, ecg);
 t = (0:length(ecg) - 1)/fs;
 figure()
 plot(t, ecg), title('Початковий та відфільтрований сигнали'), hold on
-plot(t, ecgd1, 'k-'), xlim([0 1]),  hold off,
+plot(t, ecgd1, 'k-'), grid on, xlim([0 1]),  hold off,
 xlabel('t, мс')
 ylabel('A, мкВ')
 
@@ -173,7 +173,7 @@ ecgd2 = filter(bd2, ad2, ecg);
 t = (0:length(ecg) - 1)/fs;
 figure()
 plot(t, ecg), title('Початковий та відфільтрований сигнали'), hold on
-plot(t, ecgd2, 'k-'), xlim([0 1]),  hold off,
+plot(t, ecgd2, 'k-'), grid on, xlim([0 1]),  hold off,
 xlabel('t, мс')
 ylabel('A, мкВ')
 
