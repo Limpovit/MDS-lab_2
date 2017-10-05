@@ -14,18 +14,20 @@ disp('Виконав: Лимар Віталій, група БМ-462 ІІДС')
 
 %=== Завдання #1.1 ===
 % Реалізація фільтру Хеннінга, обчислення АЧХ та ФЧХ
-fs = 1000;
-b = [1 2 1]/4;  % коефіцієнти різницевого рівняння 
+fs = 
+b = [1 2 1]/4;% коефіцієнти різницевого рівняння 
 a = 1;
 n = 512;    % кількість точок, що розраховуються
 [h,w] = freqz(b,a,n);
-mag = abs(h); 
-phase = angle(h)*180/pi;
+mag = abs(h); phase = angle(h)*180/pi;
+subplot(211); plot(w/(2*pi)*fs,mag), grid on
+subplot(212), plot(w/(2*pi) *fs,unwrap(phase)), grid on
+b =		
+a = 
+n = 	
 figure()
-subplot(211); plot(w/(2*pi)*fs,mag), grid on, xlabel('АЧХ')
-subplot(212), plot(w/(2*pi) *fs,unwrap(phase)), grid on, xlabel('ФЧХ')
-
-
-
+[] = freqz();
+...
+... введіть позначення осей графіків
 
 
