@@ -37,7 +37,7 @@ disp(x);
 % Фільтрація ЕКГ, файл ecg117.dat
 ecg117 = load('ecg117.dat');
 fs = 1000;
-ecg = ecg117(:, 1);		% сигнал ЕКГ
+ecg = ecg117;		% сигнал ЕКГ
 ecg = detrend(ecg);
 ecgf = filter(b, a, ecg);
 t = (0:length(ecg) - 1)/fs;
@@ -154,6 +154,28 @@ H1 = filt(bd1, ad1)
 H2 = filt(bd2, ad2)
 
 
+%=== Завдання #4.2 ===
+% Дослідження процесу диференціювання ЕКГ з шумом (файл ecg117.dat)
+% N = 1
+fs = 1000;
+ecg = ecg117; 	% сигнал ЕКГ
+ecg = detrend(ecg);
+ecgd1 = filter(bd1, ad1, ecg);
+t = (0:length(ecg) - 1)/fs;
+figure()
+plot(t, ecg), title('Початковий та відфільтрований сигнали'), hold on
+plot(t, ecgd1, 'k-'), xlim([0 1]),  hold off,
+xlabel('t, мс')
+ylabel('A, мкВ')
+
+% N = 2
+ecgd2 = filter(bd2, ad2, ecg);
+t = (0:length(ecg) - 1)/fs;
+figure()
+plot(t, ecg), title('Початковий та відфільтрований сигнали'), hold on
+plot(t, ecgd2, 'k-'), xlim([0 1]),  hold off,
+xlabel('t, мс')
+ylabel('A, мкВ')
 
 
 
